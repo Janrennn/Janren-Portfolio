@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Form Validation Example</title>
+  <script src="https://cdn.jsdelivr.net/npm/just-validate@4.2.0/dist/just-validate.production.min.js"></script>
+</head>
+<body>
+  <h2>Forms: Form Validation</h2>
+  <form id="signup-form">
+
+    <input type="text" name="name" placeholder="Name" /><br><br>
+    <input type="email" name="email" placeholder="Email" /><br><br>
+    <button type="submit">Submit</button>
+  </form>
+
+  <script>
+    const validator = new JustValidate('#signup-form');
+
+    validator
+      .addField('input[name="name"]', [
+        {
+          rule: 'required',
+          errorMessage: 'Name is required',
+        },
+      ])
+      .addField('input[name="email"]', [
+        {
+          rule: 'required',
+          errorMessage: 'Email is required',
+        },
+        {
+          rule: 'email',
+          errorMessage: 'Email is invalid!',
+        },
+
+      ])
+
+      .onSuccess((event) => {
+      event.preventDefault();
+      alert('Form submitted successfully!');
+
+    });
+      
+
+  </script>
+</body>
+</html>
